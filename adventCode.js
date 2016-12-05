@@ -1,31 +1,24 @@
 'use strict';
 
-calcDistance(process.argv.slice(2));
+const fs = require('fs');
+calcDistance();
 
-function calcDistance(input) {
-  var inputArr = input[0].split(', ');
-  var facing = 'N';
-  var dirKey = {'N': 0, 'E': 1, 'S': 2, 'W': 3};
-  var dirTotals = {'N': 0, 'E': 0, 'S': 0, 'W': 0};
-  var directionArr = ['N', 'E', 'S', 'W'];
-  for (var i = 0; i < inputArr.length; i++) {
-    var currDirection = inputArr[i].charAt(0);
-    if (currDirection === 'R') {
-      if (facing === 'W') {
-        facing = 'N';
-      } else {
-        facing = directionArr[dirKey[facing] + 1];
-      }
-    } else if (currDirection === 'L') {
-      if (facing === 'N') {
-        facing = 'W';
-      } else {
-        facing = directionArr[dirKey[facing] - 1];
-      }
-    }
+function calcDistance() {
+  fs.readFile('input.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    let dataArr = data.split(', ');
+    let heading = 'N'; 
+    let dirMap = {'N': 0, 'E': 1, 'S': 2, 'W': 3};
+    let dirTotals = {'N': 0, 'E': 0, 'S': 0, 'W': 0};
+    let directionArr = ['N', 'E', 'S', 'W'];
+    dataArr.forEach(i => {
+      var currentDirection = i.charAt(0);
+      if (currentDirection === 'R') heading = (heading === 'W') ? 'N' : directionArr[dirMap[heading] + 1];
+      if (currentDirection === 'L') heading = (heading === 'N') ? 'W' : directionArr[dirMap[heading] - 1];
+      dirTotals[heading] += parseInt(i.substring(1));
+    });
+    let dist = Math.abs(dirTotals['N'] - dirTotals['S']) + Math.abs(dirTotals['W'] - dirTotals['E']);
+    console.log(dist);
 
-    dirTotals[facing] += parseInt(inputArr[i].substring(1)); 
-  }
-  var dist = Math.abs(dirTotals['N'] - dirTotals['S']) + Math.abs(dirTotals['W'] - dirTotals['E']);
-  console.log(dist);
+  });
 }
