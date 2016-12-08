@@ -8,7 +8,7 @@ let coordinates = {x: 0, y: 0};
 
 // Part One
 function calcDistances() {
-  fs.readFile(__dirname + '/../input/input.txt', 'utf8', (err, data) => {
+  fs.readFile(__dirname + '/../input/day1input.txt', 'utf8', (err, data) => {
     if (err) throw err;
     let dataArr = data.split(', ');
     let heading = 'N'; 
