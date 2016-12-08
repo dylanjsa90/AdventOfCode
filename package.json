@@ -1,0 +1,22 @@
+{
+  "name": "AdventOfCode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylanjsa90/AdventOfCode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dylanjsa90/AdventOfCode/issues"
+  },
+  "homepage": "https://github.com/dylanjsa90/AdventOfCode#readme",
+  "dependencies": {
+  }
+}
