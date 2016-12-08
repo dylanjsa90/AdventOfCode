@@ -6,7 +6,7 @@ function readInput() {
   fs.readFile(__dirname + '/../input/day2input.txt', 'utf8', (err, data) => {
     decipherCode(data);
     decipherCodePartTwo(data);
-  })
+  });
 }
 
 function decipherCode(input) {
@@ -14,7 +14,6 @@ function decipherCode(input) {
   let keypad = [[1,2,3], [4,5,6], [7,8,9]];
   let objFn = {'U': moveU, 'R': moveR, 'D': moveD, 'L': moveL};
   let inputArr = input.trim().split('\n');
-  console.log('Input, ', inputArr);
   let result = '';
   for (let i = 0; i < inputArr.length; i++) {
     let line = inputArr[i].split('');
@@ -77,7 +76,7 @@ function decipherCodePartTwo(input) {
     });
     result += (keypad[coords[0]][coords[1]]);
   } 
-  console.log('FInal Array: ', result);
+  console.log('Part 2 Result: ' + result);
 }
 
 function moveUP(co, keypad) {
@@ -108,7 +107,4 @@ function moveLE(co, keypad) {
   return co;
 }
 
-function keypadNum(co, keypad) {
-  return keypad[co[0]][co[1]];
-}
 readInput();
