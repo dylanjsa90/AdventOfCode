@@ -20,7 +20,6 @@ function decipherCode(input) {
     line.forEach(function(e) {
       coords = objFn[e](coords);
     });
-    console.log('Result: ' + keypad[coords[0]][coords[1]]);
     result += keypad[coords[0]][coords[1]];
   } 
   console.log('Part One: ' + result);
