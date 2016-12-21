@@ -24,19 +24,32 @@ function decryptRoom(room) {
   parsing = parsing.join('');
   // if (!roomContainsCode(cypher, parsing)) return 0;
   let characterCount = countCharacters(parsing);
-  let sort = sortCharactersByCount(characterCount, parsing);
+  let sort = sortCharactersByCount(characterCount);
+  let orderedString = convertSortedToString(sort);
   let check = [];
-  for (let i = 0; i < 5; i++) {
-    let topChar = sort.pop();
-    let cIndex = cypher.indexOf(topChar.key);
-    if (cIndex !== -1) {
-      cypher = cypher.substring(0, cIndex) + cypher.substring(cIndex + 1);
-      check.push(topChar);
-    }  
-  }    
+  cypher.split('').forEach(c => {
+    let isValid = (orderedString.length - orderedString.indexOf(c)) <=5
+    if (isValid) check.push(c);
+  }); 
+  // for (let i = 0; i < 5; i++) {
+  //   let topChar = sort.pop();
+  //   let cIndex = cypher.indexOf(topChar.key);
+  //   if (cIndex !== -1) {
+  //     cypher = cypher.substring(0, cIndex) + cypher.substring(cIndex + 1);
+  //     check.push(topChar);
+  //   }  
+  // }    
   // console.log('Check: ', check);
   // console.log('Cypher: ' + cypher);
   return (check.length === 5) ? sector : 0;  
+}
+
+function convertSortedToString(sort) {
+  let orderedString = '';
+  for (let i = 0; i < sort.length; i++) {
+    orderedString += sort[i].key;
+  }
+  return orderedString;
 }
 
 
